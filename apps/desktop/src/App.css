@@ -1,0 +1,2204 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+}
+
+body {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  overflow: hidden;
+
+  background: transparent !important;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+#root {
+  background: transparent !important;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Root                                                                       */
+/* -------------------------------------------------------------------------- */
+
+.recallx {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  background: transparent !important;
+
+  color: rgba(255, 255, 255, 0.95);
+
+  overflow: hidden;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Search                                                                     */
+/* -------------------------------------------------------------------------- */
+
+.search-container {
+  width: 100%;
+  height: 70px;
+  min-height: 70px;
+  flex: 0 0 70px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 22px;
+
+  position: relative;
+  z-index: 20;
+
+  background: rgba(25, 25, 29, 0.99);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+.search-icon {
+  flex: 0 0 auto;
+
+  width: 25px;
+
+  margin-right: 14px;
+
+  color: rgba(255, 255, 255, 0.58);
+
+  font-size: 28px;
+
+  line-height: 1;
+
+  transform: translateY(-1px);
+}
+
+.search-container input {
+  width: 100%;
+
+  min-width: 0;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: rgba(255, 255, 255, 0.96);
+
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
+
+  font-size: 19px;
+
+  font-weight: 400;
+
+  letter-spacing: -0.15px;
+}
+
+.search-container input::placeholder {
+  color: rgba(255, 255, 255, 0.38);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Settings wrapper                                                           */
+/* -------------------------------------------------------------------------- */
+
+.settings-wrapper {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Settings button                                                            */
+/* -------------------------------------------------------------------------- */
+
+.settings-button {
+  width: 34px;
+  height: 34px;
+
+  flex: 0 0 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-left: 10px;
+
+  padding: 0;
+
+  border: 1px solid transparent;
+
+  border-radius: 7px;
+
+  background: transparent;
+
+  color: rgba(255, 255, 255, 0.45);
+
+  cursor: pointer;
+
+  transition:
+    background 100ms ease,
+    color 100ms ease,
+    border-color 100ms ease;
+}
+
+.settings-button:hover {
+  background: rgba(255, 255, 255, 0.07);
+
+  border-color: rgba(255, 255, 255, 0.08);
+
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.settings-button:active,
+.settings-button-active {
+  background: rgba(255, 255, 255, 0.10);
+
+  border-color: rgba(255, 255, 255, 0.10);
+
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* Three dots */
+
+.settings-dots {
+  display: flex;
+  align-items: center;
+
+  gap: 3px;
+}
+
+.settings-dots i {
+  width: 3px;
+  height: 3px;
+
+  display: block;
+
+  border-radius: 50%;
+
+  background: currentColor;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Settings menu                                                              */
+/* -------------------------------------------------------------------------- */
+
+.settings-menu {
+  position: absolute;
+  top: calc(100% + 9px);
+  right: 0;
+
+  width: 238px;
+  padding: 7px;
+
+  z-index: 100;
+
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 12px;
+
+  background: rgba(27, 27, 31, 0.985);
+
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.45),
+    0 3px 12px rgba(0, 0, 0, 0.24);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  overflow: hidden;
+
+  animation: settings-menu-in 130ms ease-out;
+}
+
+@keyframes settings-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Settings title                                                             */
+/* -------------------------------------------------------------------------- */
+
+.settings-title {
+  height: 28px;
+  padding: 0 10px;
+
+  display: flex;
+  align-items: center;
+
+  color: rgba(255, 255, 255, 0.34);
+
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Settings options                                                           */
+/* -------------------------------------------------------------------------- */
+
+.settings-option {
+  width: 100%;
+  height: 39px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 10px;
+
+  border: 1px solid transparent;
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: rgba(255, 255, 255, 0.70);
+
+  text-align: left;
+  cursor: pointer;
+
+  transition:
+    background 100ms ease,
+    color 100ms ease,
+    border-color 100ms ease;
+}
+
+.settings-option:hover {
+  background: rgba(255, 255, 255, 0.065);
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.settings-option.active {
+  background: rgba(57, 255, 20, 0.065);
+  border-color: rgba(57, 255, 20, 0.09);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.settings-option-icon {
+  width: 24px;
+  flex: 0 0 24px;
+
+  margin-right: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: rgba(255, 255, 255, 0.45);
+
+  font-size: 14px;
+}
+
+.settings-option:hover .settings-option-icon,
+.settings-option.active .settings-option-icon {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.settings-option-label {
+  flex: 1;
+  min-width: 0;
+}
+
+.settings-option-chevron {
+  padding-right: 8px;
+}
+
+.settings-chevron {
+  color: rgba(255, 255, 255, 0.27);
+
+  font-size: 20px;
+  line-height: 1;
+
+  transition:
+    color 100ms ease,
+    transform 100ms ease;
+}
+
+.settings-option-chevron:hover .settings-chevron {
+  color: rgba(255, 255, 255, 0.60);
+  transform: translateX(2px);
+}
+
+.settings-check {
+  margin-left: auto;
+
+  color: #39ff14;
+
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Nested settings page                                                       */
+/* -------------------------------------------------------------------------- */
+
+.settings-back {
+  width: 100%;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-bottom: 4px;
+  padding: 0 9px;
+
+  border: 1px solid transparent;
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: rgba(255, 255, 255, 0.76);
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+
+  text-align: left;
+  cursor: pointer;
+
+  transition:
+    background 100ms ease,
+    color 100ms ease;
+}
+
+.settings-back:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.settings-back span:first-child {
+  width: 17px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: rgba(255, 255, 255, 0.42);
+
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Account settings                                                           */
+/* -------------------------------------------------------------------------- */
+
+.settings-account-section {
+  padding: 5px 3px 9px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.settings-account-section:last-child {
+  padding-bottom: 3px;
+  border-bottom: none;
+}
+
+.settings-account-provider {
+  padding: 2px 7px 6px;
+
+  color: rgba(255, 255, 255, 0.31);
+
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
+
+  font-size: 8px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.settings-account-row {
+  min-height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 9px;
+
+  padding: 5px 7px;
+
+  border: 1px solid rgba(255, 255, 255, 0.045);
+  border-radius: 9px;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  transition:
+    background 100ms ease,
+    border-color 100ms ease;
+}
+
+.settings-account-row:hover {
+  background: rgba(255, 255, 255, 0.045);
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
+.settings-account-info {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.settings-account-icon {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 7px;
+
+  background: rgba(255, 255, 255, 0.055);
+
+  color: rgba(255, 255, 255, 0.88);
+
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.settings-account-name {
+  color: rgba(255, 255, 255, 0.80);
+  font-size: 12px;
+}
+
+.settings-account-action {
+  height: 27px;
+  padding: 0 9px;
+
+  flex: 0 0 auto;
+
+  border: 1px solid rgba(57, 255, 20, 0.25);
+  border-radius: 7px;
+
+  background: rgba(57, 255, 20, 0.055);
+  color: #39ff14;
+
+  font-family: inherit;
+  font-size: 9px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 100ms ease,
+    border-color 100ms ease;
+}
+
+.settings-account-action:hover:not(:disabled) {
+  background: rgba(57, 255, 20, 0.105);
+  border-color: rgba(57, 255, 20, 0.42);
+}
+
+.settings-account-action:disabled {
+  opacity: 0.40;
+  cursor: default;
+}
+
+.settings-account-action.connected {
+  background: rgba(57, 255, 20, 0.04);
+  border-color: rgba(57, 255, 20, 0.16);
+}
+
+.settings-account-status {
+  padding: 6px 7px 0;
+
+  color: rgba(57, 255, 20, 0.50);
+
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+.settings-account-error {
+  margin: 6px 7px 1px;
+  padding: 6px 7px;
+
+  border: 1px solid rgba(255, 80, 80, 0.15);
+  border-radius: 7px;
+
+  background: rgba(255, 70, 70, 0.06);
+
+  color: rgba(255, 145, 145, 0.86);
+
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Privacy / placeholder                                                      */
+/* -------------------------------------------------------------------------- */
+
+.settings-placeholder {
+  padding: 12px 9px 10px;
+}
+
+.settings-placeholder-title {
+  margin-bottom: 5px;
+
+  color: rgba(255, 255, 255, 0.78);
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.settings-placeholder-text {
+  color: rgba(255, 255, 255, 0.35);
+
+  font-size: 9px;
+  line-height: 1.45;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Results                                                                    */
+/* -------------------------------------------------------------------------- */
+
+.results-container {
+  width: 100%;
+
+  flex: 1 1 auto;
+
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 8px;
+
+  background: rgba(18, 18, 21, 0.985);
+
+  overflow: hidden;
+
+  animation: results-in 120ms ease-out;
+}
+
+@keyframes results-in {
+  from {
+    opacity: 0;
+
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Scrollable results                                                         */
+/* -------------------------------------------------------------------------- */
+
+.results-scroll {
+  width: 100%;
+
+  height: 270px;
+
+  max-height: 270px;
+
+  flex: 0 0 270px;
+
+  overflow-y: auto;
+
+  overflow-x: hidden;
+
+  padding-right: 3px;
+
+  scrollbar-width: auto;
+
+  scrollbar-color:
+    rgba(255, 255, 255, 0.35)
+    rgba(255, 255, 255, 0.04);
+}
+
+/* Chromium / WebView scrollbar */
+
+.results-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.results-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.035);
+
+  border-radius: 999px;
+}
+
+.results-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.32);
+
+  border-radius: 999px;
+}
+
+.results-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.48);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Result card                                                                */
+/* -------------------------------------------------------------------------- */
+
+.result-card {
+  width: 100%;
+
+  min-height: 86px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  padding: 12px 14px;
+
+  margin: 0;
+
+  border: 1px solid transparent;
+
+  border-radius: 9px;
+
+  background: transparent;
+
+  color: rgba(255, 255, 255, 0.92);
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 90ms ease,
+    border-color 90ms ease,
+    opacity 90ms ease;
+}
+
+.result-card:hover {
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.result-card.selected {
+  background: rgba(255, 255, 255, 0.075);
+
+  border-color: rgba(255, 255, 255, 0.09);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Result main                                                                */
+/* -------------------------------------------------------------------------- */
+
+.result-main {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* File type badge                                                            */
+/* -------------------------------------------------------------------------- */
+
+.file-type-badge {
+  width: 32px;
+  height: 32px;
+
+  flex: 0 0 32px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 6px;
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  background: rgba(255, 255, 255, 0.07);
+
+  color: rgba(255, 255, 255, 0.78);
+
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.2px;
+
+  line-height: 1;
+}
+
+/* Slightly brighter when selected */
+
+.result-card.selected .file-type-badge {
+  filter: brightness(1.08);
+}
+
+/* -------------------------------------------------------------------------- */
+/* File type colors                                                           */
+/* -------------------------------------------------------------------------- */
+
+/* PDF — Red */
+
+.file-type-pdf {
+  background: rgba(220, 55, 55, 0.18);
+
+  border-color: rgba(255, 80, 80, 0.35);
+
+  color: rgba(255, 105, 105, 0.95);
+}
+
+/* DOC / DOCX — Blue */
+
+.file-type-doc,
+.file-type-docx {
+  background: rgba(45, 120, 220, 0.18);
+
+  border-color: rgba(70, 145, 255, 0.35);
+
+  color: rgba(105, 170, 255, 0.95);
+}
+
+/* Python — Yellow */
+
+.file-type-py {
+  background: rgba(225, 190, 45, 0.16);
+
+  border-color: rgba(245, 205, 65, 0.35);
+
+  color: rgba(250, 215, 85, 0.95);
+}
+
+/* JavaScript / JSX — Yellow */
+
+.file-type-js,
+.file-type-jsx {
+  background: rgba(220, 185, 40, 0.16);
+
+  border-color: rgba(245, 210, 60, 0.35);
+
+  color: rgba(250, 215, 80, 0.95);
+}
+
+/* TypeScript / TSX — Blue */
+
+.file-type-ts,
+.file-type-tsx {
+  background: rgba(40, 115, 210, 0.18);
+
+  border-color: rgba(70, 145, 245, 0.35);
+
+  color: rgba(100, 170, 255, 0.95);
+}
+
+/* Rust — Orange */
+
+.file-type-rs {
+  background: rgba(205, 85, 35, 0.18);
+
+  border-color: rgba(235, 105, 50, 0.35);
+
+  color: rgba(245, 130, 75, 0.95);
+}
+
+/* JSON — Amber */
+
+.file-type-json {
+  background: rgba(190, 145, 40, 0.17);
+
+  border-color: rgba(225, 180, 65, 0.35);
+
+  color: rgba(240, 195, 85, 0.95);
+}
+
+/* Markdown — Purple */
+
+.file-type-md {
+  background: rgba(135, 85, 205, 0.18);
+
+  border-color: rgba(165, 110, 240, 0.35);
+
+  color: rgba(190, 145, 255, 0.95);
+}
+
+/* CSV — Green */
+
+.file-type-csv {
+  background: rgba(50, 165, 95, 0.17);
+
+  border-color: rgba(70, 190, 115, 0.35);
+
+  color: rgba(100, 220, 145, 0.95);
+}
+
+/* C / C++ / H / HPP */
+
+.file-type-c,
+.file-type-cpp,
+.file-type-h,
+.file-type-hpp {
+  background: rgba(70, 120, 190, 0.17);
+
+  border-color: rgba(90, 145, 220, 0.35);
+
+  color: rgba(120, 175, 240, 0.95);
+}
+
+/* HTML — Orange */
+
+.file-type-html {
+  background: rgba(225, 90, 45, 0.17);
+
+  border-color: rgba(245, 110, 60, 0.35);
+
+  color: rgba(255, 135, 85, 0.95);
+}
+
+/* CSS — Blue */
+
+.file-type-css {
+  background: rgba(50, 115, 210, 0.17);
+
+  border-color: rgba(75, 145, 240, 0.35);
+
+  color: rgba(105, 175, 255, 0.95);
+}
+
+/* SQL — Cyan */
+
+.file-type-sql {
+  background: rgba(45, 155, 170, 0.17);
+
+  border-color: rgba(65, 180, 195, 0.35);
+
+  color: rgba(100, 205, 220, 0.95);
+}
+
+/* XML — Orange */
+
+.file-type-xml {
+  background: rgba(210, 105, 45, 0.17);
+
+  border-color: rgba(235, 125, 60, 0.35);
+
+  color: rgba(245, 150, 85, 0.95);
+}
+
+/* YAML / YML — Pink */
+
+.file-type-yaml,
+.file-type-yml {
+  background: rgba(190, 65, 110, 0.17);
+
+  border-color: rgba(220, 90, 135, 0.35);
+
+  color: rgba(240, 125, 160, 0.95);
+}
+
+/* TOML — Gray */
+
+.file-type-toml {
+  background: rgba(125, 135, 145, 0.17);
+
+  border-color: rgba(155, 165, 175, 0.30);
+
+  color: rgba(190, 200, 210, 0.92);
+}
+
+/* TXT — Neutral Gray */
+
+.file-type-txt {
+  background: rgba(125, 135, 145, 0.14);
+
+  border-color: rgba(165, 175, 185, 0.28);
+
+  color: rgba(200, 205, 215, 0.90);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Result content                                                             */
+/* -------------------------------------------------------------------------- */
+
+.result-content {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.result-name {
+  min-width: 0;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  color: rgba(255, 255, 255, 0.94);
+
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+.result-path {
+  margin-top: 5px;
+
+  overflow: hidden;
+
+  color: rgba(255, 255, 255, 0.38);
+
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
+
+  font-size: 10px;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Right-side metadata                                                        */
+/* -------------------------------------------------------------------------- */
+
+.result-meta {
+  flex: 0 0 auto;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-end;
+
+  justify-content: center;
+
+  gap: 5px;
+
+  max-width: 110px;
+
+  margin-left: 8px;
+}
+
+.meta-tag {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  max-width: 110px;
+
+  padding: 3px 7px;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+
+  border-radius: 4px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  color: rgba(255, 255, 255, 0.34);
+
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  line-height: 1.2;
+
+  letter-spacing: 0.2px;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  min-height: 20px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Result footer                                                              */
+/* -------------------------------------------------------------------------- */
+
+.result-footer {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-top: 7px;
+
+  padding-left: 0;
+
+  font-size: 10px;
+}
+
+.source-label {
+  color: rgba(255, 255, 255, 0.25);
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.5px;
+}
+
+.open-hint {
+  color: rgba(255, 255, 255, 0.30);
+
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
+}
+
+/* -------------------------------------------------------------------------- */
+/* More results                                                               */
+/* -------------------------------------------------------------------------- */
+
+.more-results {
+  height: 28px;
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 0 4px;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: 12px;
+
+  line-height: 1;
+}
+
+.scroll-hint {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Deleted results                                                            */
+/* -------------------------------------------------------------------------- */
+
+.deleted-result {
+  opacity: 0.48;
+}
+
+.deleted-result:hover {
+  opacity: 0.62;
+}
+
+.deleted-result .file-type-badge {
+  background: rgba(255, 80, 80, 0.10);
+
+  border-color: rgba(255, 100, 100, 0.25);
+
+  color: rgba(255, 120, 120, 0.75);
+}
+
+.deleted-result .result-name {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.deleted-label {
+  color: rgba(255, 150, 150, 0.58);
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.45px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Loading / empty                                                            */
+/* -------------------------------------------------------------------------- */
+
+.status-container {
+  height: 50px;
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 0 16px;
+
+  color: rgba(255, 255, 255, 0.48);
+
+  font-size: 12px;
+}
+
+.status-container.empty {
+  justify-content: center;
+
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+
+  margin-right: 9px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.5);
+
+  animation:
+    pulse 900ms ease-in-out
+    infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.35;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ========================================================================== */
+/* LIGHT THEME                                                               */
+/* ========================================================================== */
+
+.theme-light {
+  color: rgba(20, 20, 23, 0.95);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Light search                                                               */
+/* -------------------------------------------------------------------------- */
+
+.theme-light .search-container {
+  background: rgba(245, 245, 247, 0.98);
+
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.10);
+}
+
+.theme-light .search-icon {
+  color: rgba(0, 0, 0, 0.48);
+}
+
+.theme-light .search-container input {
+  color: rgba(20, 20, 23, 0.94);
+}
+
+.theme-light .search-container input::placeholder {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Light settings button                                                      */
+/* -------------------------------------------------------------------------- */
+
+.theme-light .settings-button {
+  color: rgba(0, 0, 0, 0.42);
+}
+
+.theme-light .settings-button:hover {
+  background: rgba(0, 0, 0, 0.055);
+
+  border-color: rgba(0, 0, 0, 0.08);
+
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.theme-light .settings-button:active,
+.theme-light .settings-button-active {
+  background: rgba(0, 0, 0, 0.08);
+
+  border-color: rgba(0, 0, 0, 0.10);
+
+  color: rgba(0, 0, 0, 0.80);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Light settings menu                                                        */
+/* -------------------------------------------------------------------------- */
+
+.theme-light .settings-menu {
+  border-color: rgba(0, 0, 0, 0.10);
+
+  background: rgba(250, 250, 252, 0.98);
+
+  box-shadow:
+    0 14px 35px rgba(0, 0, 0, 0.16),
+    0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.theme-light .settings-title {
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.theme-light .settings-option {
+  color: rgba(0, 0, 0, 0.62);
+}
+
+.theme-light .settings-option:hover {
+  background: rgba(0, 0, 0, 0.045);
+
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.theme-light .settings-option.active {
+  background: rgba(0, 0, 0, 0.065);
+
+  color: rgba(0, 0, 0, 0.90);
+}
+
+.theme-light .settings-option-icon {
+  color: rgba(0, 0, 0, 0.42);
+}
+
+.theme-light .settings-option.active .settings-option-icon {
+  color: rgba(0, 0, 0, 0.72);
+}
+
+.theme-light .settings-check {
+  color: rgba(0, 0, 0, 0.55);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Light nested settings                                                      */
+/* -------------------------------------------------------------------------- */
+
+.theme-light .settings-menu {
+  border-color: rgba(0, 0, 0, 0.10);
+  background: rgba(250, 250, 252, 0.985);
+
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.16),
+    0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.theme-light .settings-option {
+  color: rgba(0, 0, 0, 0.66);
+}
+
+.theme-light .settings-option:hover {
+  background: rgba(0, 0, 0, 0.045);
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.theme-light .settings-option.active {
+  background: rgba(57, 180, 20, 0.08);
+  border-color: rgba(57, 180, 20, 0.10);
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.theme-light .settings-option-icon {
+  color: rgba(0, 0, 0, 0.40);
+}
+
+.theme-light .settings-option:hover .settings-option-icon,
+.theme-light .settings-option.active .settings-option-icon {
+  color: rgba(0, 0, 0, 0.68);
+}
+
+.theme-light .settings-chevron {
+  color: rgba(0, 0, 0, 0.28);
+}
+
+.theme-light .settings-check {
+  color: rgba(35, 150, 10, 0.90);
+}
+
+.theme-light .settings-back {
+  color: rgba(0, 0, 0, 0.72);
+}
+
+.theme-light .settings-back:hover {
+  background: rgba(0, 0, 0, 0.045);
+  color: rgba(0, 0, 0, 0.90);
+}
+
+.theme-light .settings-back span:first-child {
+  color: rgba(0, 0, 0, 0.40);
+}
+
+.theme-light .settings-account-section {
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+
+.theme-light .settings-account-provider {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.theme-light .settings-account-row {
+  border-color: rgba(0, 0, 0, 0.055);
+  background: rgba(0, 0, 0, 0.025);
+}
+
+.theme-light .settings-account-row:hover {
+  background: rgba(0, 0, 0, 0.045);
+}
+
+.theme-light .settings-account-icon {
+  border-color: rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.045);
+  color: rgba(0, 0, 0, 0.70);
+}
+
+.theme-light .settings-account-name {
+  color: rgba(0, 0, 0, 0.70);
+}
+
+.theme-light .settings-account-status {
+  color: rgba(35, 145, 10, 0.72);
+}
+
+.theme-light .settings-placeholder-title {
+  color: rgba(0, 0, 0, 0.72);
+}
+
+.theme-light .settings-placeholder-text {
+  color: rgba(0, 0, 0, 0.40);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Light results                                                              */
+/* -------------------------------------------------------------------------- */
+
+.theme-light .results-container {
+  background: rgba(238, 238, 241, 0.98);
+}
+
+.theme-light .result-card {
+  color: rgba(20, 20, 23, 0.92);
+}
+
+.theme-light .result-card:hover {
+  background: rgba(0, 0, 0, 0.035);
+}
+
+.theme-light .result-card.selected {
+  background: rgba(0, 0, 0, 0.065);
+
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.theme-light .result-name {
+  color: rgba(20, 20, 23, 0.92);
+}
+
+.theme-light .result-path {
+  color: rgba(0, 0, 0, 0.42);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Light metadata                                                             */
+/* -------------------------------------------------------------------------- */
+
+.theme-light .meta-tag {
+  border-color: rgba(0, 0, 0, 0.08);
+
+  background: rgba(0, 0, 0, 0.035);
+
+  color: rgba(0, 0, 0, 0.42);
+}
+
+.theme-light .source-label {
+  color: rgba(0, 0, 0, 0.30);
+}
+
+.theme-light .open-hint {
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.theme-light .more-results {
+  color: rgba(0, 0, 0, 0.78);
+}
+
+.theme-light .scroll-hint {
+  color: rgba(0, 0, 0, 0.42);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Light loading / empty                                                      */
+/* -------------------------------------------------------------------------- */
+
+.theme-light .status-container {
+  color: rgba(0, 0, 0, 0.48);
+}
+
+.theme-light .status-container.empty {
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.theme-light .status-dot {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Light scrollbar                                                            */
+/* -------------------------------------------------------------------------- */
+
+.theme-light .results-scroll {
+  scrollbar-color:
+    rgba(0, 0, 0, 0.25)
+    rgba(0, 0, 0, 0.035);
+}
+
+.theme-light .results-scroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.035);
+}
+
+.theme-light .results-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.24);
+}
+
+.theme-light .results-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.36);
+}
+
+/* ========================================================================== */
+/* LIGHT THEME — FILE TYPE BADGES                                            */
+/* ========================================================================== */
+
+/*
+ * The dark theme keeps the original translucent file badges.
+ *
+ * In light mode the same translucent colors become too washed out,
+ * especially the yellow Python badge. These overrides give each badge
+ * a much cleaner light-theme appearance while keeping the same 32x32
+ * square layout.
+ */
+
+/* Base */
+
+.theme-light .file-type-badge {
+  background: rgba(255, 255, 255, 0.72);
+
+  border-color: rgba(0, 0, 0, 0.10);
+
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04);
+
+  filter: none;
+}
+
+/* PDF — Red */
+
+.theme-light .file-type-pdf {
+  background: rgba(255, 235, 235, 0.90);
+
+  border-color: rgba(220, 55, 55, 0.42);
+
+  color: rgb(190, 45, 45);
+}
+
+/* DOC / DOCX — Blue */
+
+.theme-light .file-type-doc,
+.theme-light .file-type-docx {
+  background: rgba(235, 243, 255, 0.90);
+
+  border-color: rgba(45, 120, 220, 0.42);
+
+  color: rgb(35, 95, 180);
+}
+
+/* Python — Yellow */
+
+.theme-light .file-type-py {
+  background: rgba(255, 248, 220, 0.95);
+
+  border-color: rgba(205, 165, 25, 0.45);
+
+  color: rgb(145, 112, 10);
+}
+
+/* JavaScript / JSX — Yellow */
+
+.theme-light .file-type-js,
+.theme-light .file-type-jsx {
+  background: rgba(255, 248, 220, 0.95);
+
+  border-color: rgba(210, 175, 30, 0.45);
+
+  color: rgb(145, 112, 10);
+}
+
+/* TypeScript / TSX — Blue */
+
+.theme-light .file-type-ts,
+.theme-light .file-type-tsx {
+  background: rgba(235, 243, 255, 0.90);
+
+  border-color: rgba(40, 115, 210, 0.42);
+
+  color: rgb(35, 95, 180);
+}
+
+/* Rust — Orange */
+
+.theme-light .file-type-rs {
+  background: rgba(255, 240, 232, 0.92);
+
+  border-color: rgba(205, 85, 35, 0.42);
+
+  color: rgb(175, 70, 25);
+}
+
+/* JSON — Amber */
+
+.theme-light .file-type-json {
+  background: rgba(255, 248, 225, 0.94);
+
+  border-color: rgba(190, 145, 40, 0.42);
+
+  color: rgb(145, 105, 15);
+}
+
+/* Markdown — Purple */
+
+.theme-light .file-type-md {
+  background: rgba(245, 237, 255, 0.92);
+
+  border-color: rgba(135, 85, 205, 0.42);
+
+  color: rgb(105, 55, 165);
+}
+
+/* CSV — Green */
+
+.theme-light .file-type-csv {
+  background: rgba(233, 249, 239, 0.94);
+
+  border-color: rgba(50, 165, 95, 0.42);
+
+  color: rgb(35, 125, 70);
+}
+
+/* C / C++ / H / HPP */
+
+.theme-light .file-type-c,
+.theme-light .file-type-cpp,
+.theme-light .file-type-h,
+.theme-light .file-type-hpp {
+  background: rgba(237, 244, 255, 0.92);
+
+  border-color: rgba(70, 120, 190, 0.42);
+
+  color: rgb(55, 95, 155);
+}
+
+/* HTML — Orange */
+
+.theme-light .file-type-html {
+  background: rgba(255, 240, 233, 0.94);
+
+  border-color: rgba(225, 90, 45, 0.42);
+
+  color: rgb(190, 70, 30);
+}
+
+/* CSS — Blue */
+
+.theme-light .file-type-css {
+  background: rgba(235, 243, 255, 0.92);
+
+  border-color: rgba(50, 115, 210, 0.42);
+
+  color: rgb(35, 90, 175);
+}
+
+/* SQL — Cyan */
+
+.theme-light .file-type-sql {
+  background: rgba(232, 249, 250, 0.94);
+
+  border-color: rgba(45, 155, 170, 0.42);
+
+  color: rgb(30, 120, 135);
+}
+
+/* XML — Orange */
+
+.theme-light .file-type-xml {
+  background: rgba(255, 241, 232, 0.94);
+
+  border-color: rgba(210, 105, 45, 0.42);
+
+  color: rgb(175, 75, 25);
+}
+
+/* YAML / YML — Pink */
+
+.theme-light .file-type-yaml,
+.theme-light .file-type-yml {
+  background: rgba(255, 238, 246, 0.94);
+
+  border-color: rgba(190, 65, 110, 0.42);
+
+  color: rgb(155, 45, 85);
+}
+
+/* TOML — Gray */
+
+.theme-light .file-type-toml {
+  background: rgba(242, 243, 245, 0.94);
+
+  border-color: rgba(125, 135, 145, 0.38);
+
+  color: rgb(85, 95, 105);
+}
+
+/* TXT — Neutral Gray */
+
+.theme-light .file-type-txt {
+  background: rgba(243, 244, 246, 0.94);
+
+  border-color: rgba(125, 135, 145, 0.35);
+
+  color: rgb(80, 90, 100);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Light selected badge                                                      */
+/* -------------------------------------------------------------------------- */
+
+.theme-light .result-card.selected .file-type-badge {
+  filter: brightness(0.98);
+
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.07);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Light deleted badge                                                       */
+/* -------------------------------------------------------------------------- */
+
+.theme-light .deleted-result .file-type-badge {
+  background: rgba(255, 235, 235, 0.75);
+
+  border-color: rgba(220, 70, 70, 0.30);
+
+  color: rgba(180, 55, 55, 0.70);
+}
+
+/* ========================================================================== */
+/* FINAL LIGHT THEME OVERRIDES — DARK FILE TYPE BADGES + READABLE METADATA   */
+/* ========================================================================== */
+
+/* Light mode file badges: dark, compact, square, white text */
+
+.theme-light .file-type-badge {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.10);
+
+  font-size: 8px;
+  font-weight: 800;
+  color: #ffffff;
+
+  filter: none;
+}
+
+/* PDF — Dark Red */
+.theme-light .file-type-pdf {
+  background: rgb(145, 42, 42);
+  border-color: rgb(125, 35, 35);
+  color: #ffffff;
+}
+
+/* DOC / DOCX — Dark Blue */
+.theme-light .file-type-doc,
+.theme-light .file-type-docx {
+  background: rgb(45, 91, 160);
+  border-color: rgb(38, 77, 136);
+  color: #ffffff;
+}
+
+/* Python — Dark Gold */
+.theme-light .file-type-py {
+  background: rgb(160, 125, 20);
+  border-color: rgb(140, 108, 15);
+  color: #ffffff;
+}
+
+/* JavaScript / JSX — Dark Gold */
+.theme-light .file-type-js,
+.theme-light .file-type-jsx {
+  background: rgb(160, 125, 20);
+  border-color: rgb(140, 108, 15);
+  color: #ffffff;
+}
+
+/* TypeScript / TSX — Dark Blue */
+.theme-light .file-type-ts,
+.theme-light .file-type-tsx {
+  background: rgb(40, 92, 155);
+  border-color: rgb(34, 77, 130);
+  color: #ffffff;
+}
+
+/* Rust — Dark Orange */
+.theme-light .file-type-rs {
+  background: rgb(165, 72, 30);
+  border-color: rgb(140, 58, 23);
+  color: #ffffff;
+}
+
+/* JSON — Dark Amber */
+.theme-light .file-type-json {
+  background: rgb(155, 112, 22);
+  border-color: rgb(132, 94, 16);
+  color: #ffffff;
+}
+
+/* Markdown — Dark Purple */
+.theme-light .file-type-md {
+  background: rgb(105, 62, 155);
+  border-color: rgb(88, 51, 130);
+  color: #ffffff;
+}
+
+/* CSV — Dark Green */
+.theme-light .file-type-csv {
+  background: rgb(38, 125, 72);
+  border-color: rgb(31, 103, 59);
+  color: #ffffff;
+}
+
+/* C / C++ / H / HPP — Dark Blue */
+.theme-light .file-type-c,
+.theme-light .file-type-cpp,
+.theme-light .file-type-h,
+.theme-light .file-type-hpp {
+  background: rgb(55, 95, 155);
+  border-color: rgb(45, 79, 130);
+  color: #ffffff;
+}
+
+/* HTML — Dark Orange */
+.theme-light .file-type-html {
+  background: rgb(180, 70, 30);
+  border-color: rgb(150, 57, 24);
+  color: #ffffff;
+}
+
+/* CSS — Dark Blue */
+.theme-light .file-type-css {
+  background: rgb(35, 90, 175);
+  border-color: rgb(29, 75, 145);
+  color: #ffffff;
+}
+
+/* SQL — Dark Cyan */
+.theme-light .file-type-sql {
+  background: rgb(30, 120, 135);
+  border-color: rgb(24, 99, 112);
+  color: #ffffff;
+}
+
+/* XML — Dark Orange */
+.theme-light .file-type-xml {
+  background: rgb(175, 75, 25);
+  border-color: rgb(145, 61, 20);
+  color: #ffffff;
+}
+
+/* YAML / YML — Dark Pink */
+.theme-light .file-type-yaml,
+.theme-light .file-type-yml {
+  background: rgb(155, 45, 85);
+  border-color: rgb(130, 37, 70);
+  color: #ffffff;
+}
+
+/* TOML — Dark Gray */
+.theme-light .file-type-toml {
+  background: rgb(85, 95, 105);
+  border-color: rgb(70, 79, 87);
+  color: #ffffff;
+}
+
+/* TXT — Dark Gray */
+.theme-light .file-type-txt {
+  background: rgb(80, 90, 100);
+  border-color: rgb(67, 75, 84);
+  color: #ffffff;
+}
+
+/* Selected badge */
+.theme-light .result-card.selected .file-type-badge {
+  filter: brightness(1.08);
+
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.14);
+}
+
+/* Deleted result badge */
+.theme-light .deleted-result .file-type-badge {
+  background: rgb(150, 55, 55);
+  border-color: rgb(125, 43, 43);
+  color: #ffffff;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Larger right-side metadata                                                 */
+/* -------------------------------------------------------------------------- */
+
+.theme-light .result-meta {
+  max-width: 110px;
+  gap: 5px;
+  margin-left: 8px;
+}
+
+.theme-light .meta-tag {
+  min-height: 20px;
+  max-width: 110px;
+  padding: 3px 7px;
+
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  border-radius: 5px;
+
+  background: rgba(0, 0, 0, 0.055);
+  color: rgba(0, 0, 0, 0.58);
+
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.15px;
+}
+
+/* Keep the footer aligned cleanly with the larger result layout */
+.theme-light .result-footer {
+  padding-left: 0;
+}
+
+/* Slightly stronger light-theme result text */
+.theme-light .result-name {
+  color: rgba(20, 20, 23, 0.94);
+}
+
+.theme-light .result-path {
+  color: rgba(0, 0, 0, 0.46);
+}
+
+/* Light result hover / selection */
+.theme-light .result-card:hover {
+  background: rgba(0, 0, 0, 0.040);
+}
+
+.theme-light .result-card.selected {
+  background: rgba(0, 0, 0, 0.070);
+  border-color: rgba(0, 0, 0, 0.09);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Light settings                                                             */
+/* -------------------------------------------------------------------------- */
+
+.theme-light .settings-button {
+  color: rgba(0, 0, 0, 0.46);
+}
+
+.theme-light .settings-button:hover {
+  background: rgba(0, 0, 0, 0.055);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.78);
+}
+
+.theme-light .settings-button:active,
+.theme-light .settings-button-active {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.10);
+  color: rgba(0, 0, 0, 0.82);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Light status / scrollbar                                                   */
+/* -------------------------------------------------------------------------- */
+
+.theme-light .status-container {
+  color: rgba(0, 0, 0, 0.50);
+}
+
+.theme-light .status-container.empty {
+  color: rgba(0, 0, 0, 0.40);
+}
+
+.theme-light .status-dot {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.theme-light .results-scroll {
+  scrollbar-color:
+    rgba(0, 0, 0, 0.25)
+    rgba(0, 0, 0, 0.035);
+}
+
+.theme-light .results-scroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.035);
+}
+
+.theme-light .results-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.24);
+}
+
+.theme-light .results-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.36);
+}
+
+
+
+/* ========================================================================== */
+/* FINAL SHAPE / SEPARATOR REFINEMENT                                        */
+/* ========================================================================== */
+
+/*
+ * Keep the search bar visually distinct from the results without adding
+ * a heavy divider. A small breathing space + fading separator makes the
+ * transition feel more natural.
+ */
+
+.results-container {
+  position: relative;
+  padding: 10px 8px 8px;
+  border-radius: 0;
+}
+
+.results-container::before {
+  content: "";
+  position: absolute;
+
+  top: 0;
+  left: 18px;
+  right: 18px;
+
+  height: 1px;
+
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.075) 20%,
+    rgba(255, 255, 255, 0.075) 80%,
+    transparent
+  );
+
+  pointer-events: none;
+  z-index: 2;
+}
+
+.results-scroll {
+  padding-top: 2px;
+}
+
+/* Keep individual cards from creating a heavy rounded outer silhouette. */
+.results-scroll > .result-card:last-child {
+  margin-bottom: 0;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Light theme separator                                                      */
+/* -------------------------------------------------------------------------- */
+
+.theme-light .results-container::before {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0, 0, 0, 0.085) 20%,
+    rgba(0, 0, 0, 0.085) 80%,
+    transparent
+  );
+}
+
+/* ========================================================================== */
+/* RECALLX OPEN / CLOSE ANIMATION                                             */
+/* ========================================================================== */
+
+.recallx {
+  transform-origin: center center;
+
+  opacity: 1;
+
+  transform:
+    translateY(0)
+    scale(1);
+
+  transition:
+    opacity 300ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* Closing                                                                    */
+/* -------------------------------------------------------------------------- */
+
+.recallx.closing {
+  opacity: 0;
+
+  transform:
+    translateY(-35px)
+    scale(0.92);
+
+  pointer-events: none;
+
+  transition:
+    opacity 300ms cubic-bezier(0.4, 0, 1, 1),
+    transform 300ms cubic-bezier(0.4, 0, 1, 1);
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* Results appearing                                                          */
+/* -------------------------------------------------------------------------- */
+
+.results-container {
+  animation:
+    results-in 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+@keyframes results-in {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(-15px)
+      scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* Reduced motion                                                             */
+/* -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .recallx,
+  .search-container,
+  .results-container {
+    transition: none !important;
+    animation: none !important;
+  } 
+}
+
+/* Gmail result icon */
+.file-type-gmail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mail-icon {
+  font-size: 16px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
