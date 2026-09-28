@@ -21,8 +21,9 @@
 <img src="https://img.shields.io/badge/Runtime-ONNX%20Runtime-f59e0b?style=flat-square" alt="ONNX Runtime" />
 <img src="https://img.shields.io/badge/Desktop-Tauri%202-0f766e?style=flat-square" alt="Tauri 2" />
 <img src="https://img.shields.io/badge/Backend-FastAPI-0891b2?style=flat-square" alt="FastAPI" />
-<img src="https://img.shields.io/badge/Platform-Windows%20x64%20%7C%20ARM64-0078d4?style=flat-square" alt="Windows x64 and ARM64" />
-<img src="https://img.shields.io/badge/License-TBD-6b7280?style=flat-square" alt="License to be decided" />
+<img src="https://img.shields.io/badge/Platform-Windows%20ARM64%20%7C%20x64-0078d4?style=flat-square" alt="Windows ARM64 and x64" />
+<img src="https://img.shields.io/badge/License-MIT-16a34a?style=flat-square" alt="MIT License" />
+<img src="https://img.shields.io/badge/AI%20disclosure-AI--assisted%20development-dc2626?style=flat-square" alt="AI-assisted development" />
 
 <br />
 <br />
@@ -31,7 +32,12 @@
 
 </div>
 
-> **Competition submission:** Goldfish Search is designed for the Snapdragon-powered HP PC AI use-case challenge. It turns scattered personal information into a fast, private, semantic search experience that runs locally and is prepared to use Qualcomm QNN acceleration on Snapdragon hardware.
+> **Competition submission:** Goldfish Search is designed for the Snapdragon-powered HP PC AI use-case challenge. It turns scattered personal information into a fast, private, semantic search experience that runs locally and is accelerated by Qualcomm QNN on Snapdragon hardware, with an Intel OpenVINO path and a CPU fallback.
+
+> [!CAUTION]
+> **AI disclosure:** Artificial intelligence tools (large language models) were used in the development of this project, including for writing and refactoring code and for drafting documentation and README assets.
+
+<!-- TODO: name the specific tools you used and roughly which parts (code, docs, diagrams), if the competition rules ask for that level of detail. -->
 
 ---
 
@@ -66,7 +72,7 @@ Instead of uploading private material to a remote search service, Goldfish extra
 - 🔎 **Search by meaning.** Type "that pdf about the lease renewal" and find it, even if the filename is `scan_0042.pdf`.
 - 🧬 **Hybrid retrieval.** Semantic embeddings combined with lexical matching, so exact terms and fuzzy memories both work.
 - 🔒 **Local-first.** Documents, embeddings, and the vector index never leave your machine.
-- ⚡ **NPU-accelerated.** ONNX Runtime provider routing for Snapdragon (QNN) and Intel (OpenVINO), with a CPU fallback.
+- ⚡ **NPU-accelerated.** Runs on the Snapdragon NPU through ONNX Runtime and QNN, with Intel (OpenVINO) and CPU fallback paths.
 - 👀 **Always current.** A filesystem watcher keeps the index fresh as files change.
 - 📬 **Opt-in Gmail search.** Queried only for explicit email-oriented searches, using your own OAuth credentials.
 - 🪟 **Opens in the right app.** Results launch in their native Windows application.
@@ -111,26 +117,34 @@ flowchart LR
 
 | Target | Runtime path | Status |
 | --- | --- | --- |
-| Intel NPU | ONNX Runtime + OpenVINO Execution Provider | ✅ Verified on development hardware |
-| Snapdragon NPU | ONNX Runtime + QNN Execution Provider | 🟡 Source and packaging path prepared; hardware validation pending |
+| Snapdragon NPU | ONNX Runtime + QNN Execution Provider | ✅ Developed and verified on Snapdragon hardware |
+| Intel NPU | ONNX Runtime + OpenVINO Execution Provider | 🟡 Supported as an alternative path |
 | Any supported Windows PC | PyTorch/CPU fallback | ✅ Available |
+
+<!-- TODO: confirm the Intel row. If you never tested OpenVINO yourself, "Implemented, not validated" is the honest wording. -->
 
 The default model is `sentence-transformers/all-MiniLM-L6-v2`, producing 384-dimensional normalized embeddings. The model is open-source and can be replaced with another compatible embedding model as the hardware target evolves.
 
 ### 📊 Benchmarks
 
-Numbers make the NPU story concrete. Fill this in with your own measurements (leave "pending" rows honest until Snapdragon hardware is validated).
+Numbers make the NPU story concrete. Fill this in with your own measurements from the Snapdragon device.
 
-| Metric | CPU (PyTorch) | Intel NPU (OpenVINO) | Snapdragon NPU (QNN) |
+| Metric | CPU (PyTorch) | Snapdragon NPU (QNN) | Intel NPU (OpenVINO, optional) |
 | --- | --- | --- | --- |
-| Embedding latency, single query | _TODO_ ms | _TODO_ ms | _pending_ |
-| Indexing throughput (chunks/sec) | _TODO_ | _TODO_ | _pending_ |
-| End-to-end search latency (p50 / p95) | _TODO_ | _TODO_ | _pending_ |
-| Power draw while indexing | _TODO_ | _TODO_ | _pending_ |
+| Embedding latency, single query | _TODO_ ms | _TODO_ ms | _n/a_ |
+| Indexing throughput (chunks/sec) | _TODO_ | _TODO_ | _n/a_ |
+| End-to-end search latency (p50 / p95) | _TODO_ | _TODO_ | _n/a_ |
+| Power draw while indexing | _TODO_ | _TODO_ | _n/a_ |
 
 <sub>Test setup: device, RAM, corpus size (documents / chunks), model, and Goldfish version. Add these so results are reproducible.</sub>
 
 ## 🔐 Privacy and data ownership
+
+<div align="center">
+  <img src="assets/privacy.svg" alt="Privacy diagram: documents, embeddings and the index stay on your device; Gmail is opt-in and queried on request; no hosted search backend is used" width="100%" />
+</div>
+
+<br />
 
 Goldfish is local-first by design:
 
@@ -159,34 +173,43 @@ Goldfish/
 │   └── engine/              # FastAPI, ingestion, retrieval, embeddings
 ├── assets/                  # README animations and images
 ├── scripts/                 # Build and utility scripts
-└── data/                    # Local development data; ignored by Git
+├── data/                    # Local development data; ignored by Git
+├── LICENSE                  # MIT
+└── README.md
 ```
 
 ## ⚡ Quick start
 
 **Prerequisites**
 
-- Windows 10/11 (x64 or ARM64)
+- Windows 11 on a Snapdragon (ARM64) PC, the primary development and target device (x64 also works)
 - Python 3.x and Node.js 18+ _(pin the exact versions you tested with)_
 - Rust toolchain (required by Tauri 2)
-- Optional: Intel NPU drivers (OpenVINO path) or Qualcomm QNN runtime (Snapdragon path)
+- Qualcomm QNN runtime for NPU acceleration (Intel NPU drivers only if you use the OpenVINO path)
 
 ### 1. Start the local engine
+
+On a Snapdragon PC:
 
 ```powershell
 cd apps/engine
 .\.venv\Scripts\Activate.ps1
 
-$env:RECALLX_EMBEDDING_BACKEND = "openvino"
-$env:RECALLX_OPENVINO_DEVICE = "NPU"
+$env:GOLDFISH_EMBEDDING_BACKEND = "qnn"
+$env:GOLDFISH_QNN_BACKEND_PATH = "C:\Path\To\QnnHtp.dll"
 
 python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
-For a CPU-only development run:
+Other targets:
 
 ```powershell
-$env:RECALLX_EMBEDDING_BACKEND = "torch"
+# Intel NPU (OpenVINO)
+$env:GOLDFISH_EMBEDDING_BACKEND = "openvino"
+$env:GOLDFISH_OPENVINO_DEVICE = "NPU"
+
+# CPU only
+$env:GOLDFISH_EMBEDDING_BACKEND = "torch"
 ```
 
 ### 2. Start the desktop app
@@ -209,11 +232,11 @@ Invoke-RestMethod http://127.0.0.1:8000/health
 
 | Variable | Purpose | Example |
 | --- | --- | --- |
-| `RECALLX_EMBEDDING_BACKEND` | Select the embedding runtime | `openvino`, `qnn`, `torch` |
-| `RECALLX_OPENVINO_DEVICE` | OpenVINO target device | `NPU` |
-| `RECALLX_QNN_BACKEND_PATH` | Path to the Qualcomm backend DLL | `C:\Path\To\QnnHtp.dll` |
+| `GOLDFISH_EMBEDDING_BACKEND` | Select the embedding runtime | `qnn`, `openvino`, `torch` |
+| `GOLDFISH_QNN_BACKEND_PATH` | Path to the Qualcomm backend DLL | `C:\Path\To\QnnHtp.dll` |
+| `GOLDFISH_OPENVINO_DEVICE` | OpenVINO target device | `NPU` |
 
-<!-- TODO: consider renaming RECALLX_* to GOLDFISH_* (keep the old names as aliases) so the branding is consistent. -->
+<!-- TODO: make sure the engine code actually reads GOLDFISH_* (it previously read RECALLX_*). Optionally keep RECALLX_* as a fallback alias for old setups. -->
 
 ## 📦 Build a Windows installer
 
@@ -235,14 +258,14 @@ Installer artifacts are written under:
 apps/desktop/src-tauri/target/release/bundle/
 ```
 
-For a Snapdragon build, use a Snapdragon/ARM64 environment with the Qualcomm QNN runtime and set the real backend DLL path:
+For the Snapdragon build, use a Snapdragon/ARM64 environment with the Qualcomm QNN runtime and set the real backend DLL path:
 
 ```powershell
-$env:RECALLX_EMBEDDING_BACKEND = "qnn"
-$env:RECALLX_QNN_BACKEND_PATH = "C:\Path\To\QnnHtp.dll"
+$env:GOLDFISH_EMBEDDING_BACKEND = "qnn"
+$env:GOLDFISH_QNN_BACKEND_PATH = "C:\Path\To\QnnHtp.dll"
 ```
 
-The Intel and Snapdragon runtime wheels should be built in separate environments because they provide different ONNX Runtime execution providers.
+The Snapdragon and Intel runtime wheels should be built in separate environments because they provide different ONNX Runtime execution providers.
 
 ## ✅ Validation
 
@@ -263,12 +286,14 @@ Provider check:
 python -c "from app.embeddings.runtime import detect_runtime; import onnxruntime as ort; print(detect_runtime()); print(ort.get_available_providers())"
 ```
 
+On a Snapdragon PC the provider list should include `QNNExecutionProvider`.
+
 ## 🛠️ Troubleshooting
 
 <details>
 <summary><b>The NPU isn't being used and everything runs on CPU</b></summary>
 
-Run the provider check above. If `OpenVINOExecutionProvider` or `QNNExecutionProvider` is missing from the list, the wrong ONNX Runtime wheel is installed for your hardware. Create a fresh virtual environment per target.
+Run the provider check above. If `QNNExecutionProvider` (or `OpenVINOExecutionProvider` on Intel) is missing from the list, the wrong ONNX Runtime wheel is installed for your hardware. Create a fresh virtual environment per target, and confirm `GOLDFISH_QNN_BACKEND_PATH` points to a real `QnnHtp.dll`.
 </details>
 
 <details>
@@ -307,7 +332,7 @@ _TODO: list them (for example PDF, DOCX, TXT, MD)._
 
 ## 🏁 Competition alignment
 
-Goldfish Search is submitted as an on-device AI productivity use case for Snapdragon-powered HP PCs. Its core application is deliberately practical: retrieve a user's own information quickly, privately, and by meaning. The implementation uses open-source models and ONNX Runtime provider routing so the same product can adapt to Snapdragon QNN acceleration while retaining a reliable fallback path.
+Goldfish Search is submitted as an on-device AI productivity use case for Snapdragon-powered HP PCs. Its core application is deliberately practical: retrieve a user's own information quickly, privately, and by meaning. The implementation uses open-source models and ONNX Runtime provider routing so the product runs on Snapdragon QNN acceleration while retaining reliable Intel and CPU fallback paths.
 
 The project is intended to be evaluated on:
 
@@ -323,15 +348,15 @@ The project is intended to be evaluated on:
 - [x] Local document ingestion and filesystem watching
 - [x] SQLite and FAISS-backed retrieval
 - [x] Desktop UI with Tauri and React
+- [x] Snapdragon QNN NPU execution path, validated on Snapdragon hardware
 - [x] Intel OpenVINO NPU execution path
 - [x] Packaged-engine build path
-- [x] Snapdragon QNN validation on physical HP Snapdragon hardware
 - [ ] First-run folder selection and onboarding
 - [ ] Signed installer and release update channel
 
 ## 🤝 Contributing
 
-Issues and pull requests are welcome. Before opening a PR, please run the validation steps above and describe which hardware path you tested (CPU, Intel NPU, or Snapdragon NPU).
+Issues and pull requests are welcome. Before opening a PR, please run the validation steps above and describe which hardware path you tested (Snapdragon NPU, Intel NPU, or CPU).
 
 ## 🙏 Acknowledgements
 
@@ -344,7 +369,7 @@ Issues and pull requests are welcome. Before opening a PR, please run the valida
 
 ## 📄 License
 
-License terms have not been finalized yet. Do not treat this repository as granting permission to redistribute the code until a license is added.
+Goldfish Search is released under the [MIT License](LICENSE). Copyright (c) 2026 Yug Rokadia.
 
 <div align="center">
   <br />
