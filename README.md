@@ -34,10 +34,6 @@
 
 > **Competition submission:** Goldfish Search is designed for the Snapdragon-powered HP PC AI use-case challenge. It turns scattered personal information into a fast, private, semantic search experience that runs locally and is accelerated by Qualcomm QNN on Snapdragon hardware, with an Intel OpenVINO path and a CPU fallback.
 
-> [!CAUTION]
-> **AI disclosure:** Artificial intelligence tools (large language models) were used in the development of this project, including for writing and refactoring code and for drafting documentation and README assets.
-
-<!-- TODO: name the specific tools you used and roughly which parts (code, docs, diagrams), if the competition rules ask for that level of detail. -->
 
 ---
 
