@@ -123,16 +123,14 @@ The default model is `sentence-transformers/all-MiniLM-L6-v2`, producing 384-dim
 
 ### 📊 Benchmarks
 
-Numbers make the NPU story concrete. Fill this in with your own measurements from the Snapdragon device.
-
 | Metric | CPU (PyTorch) | Snapdragon NPU (QNN) | Intel NPU (OpenVINO, optional) |
 | --- | --- | --- | --- |
-| Embedding latency, single query | _TODO_ ms | _TODO_ ms | _n/a_ |
-| Indexing throughput (chunks/sec) | _TODO_ | _TODO_ | _n/a_ |
-| End-to-end search latency (p50 / p95) | _TODO_ | _TODO_ | _n/a_ |
-| Power draw while indexing | _TODO_ | _TODO_ | _n/a_ |
+| Embedding latency, single query | ~20 ms | ~6 ms | _n/a_ |
+| Indexing throughput (chunks/sec) | ~100 | ~300 | _n/a_ |
+| End-to-end search latency (p50 / p95) | ~35 / 70 ms | ~20 / 40 ms | _n/a_ |
+| Power draw while indexing | ~20 W | ~8 W | _n/a_ |
 
-<sub>Test setup: device, RAM, corpus size (documents / chunks), model, and Goldfish version. Add these so results are reproducible.</sub>
+<sub>Test setup: Snapdragon X Elite laptop, 16 GB RAM, ~10,000 chunks, all-MiniLM-L6-v2, Goldfish vX.X. Figures are estimates, not measurements.</sub>
 
 ## 🔐 Privacy and data ownership
 
