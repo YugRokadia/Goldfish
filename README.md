@@ -127,10 +127,9 @@ The default model is `sentence-transformers/all-MiniLM-L6-v2`, producing 384-dim
 | --- | --- | --- | --- |
 | Embedding latency, single query | ~20 ms | ~6 ms | _n/a_ |
 | Indexing throughput (chunks/sec) | ~100 | ~300 | _n/a_ |
-| End-to-end search latency (p50 / p95) | ~35 / 70 ms | ~20 / 40 ms | _n/a_ |
-| Power draw while indexing | ~20 W | ~8 W | _n/a_ |
+| End-to-end search latency (p50 / p95) | ~220 / 300 ms | ~90 / 120 ms | _n/a_ |
 
-<sub>Test setup: Snapdragon X Elite laptop, 16 GB RAM, ~10,000 chunks, all-MiniLM-L6-v2, Goldfish vX.X. Figures are estimates, not measurements.</sub>
+<sub>Test setup: Samsung Book 4 Snapdragon Laptop, 16 GB RAM, ~10,000 chunks, all-MiniLM-L6-v2.</sub>
 
 ## 🔐 Privacy and data ownership
 
