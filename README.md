@@ -301,7 +301,6 @@ In development the engine is started manually. Confirm the health check returns 
 Check that the folder is being watched and that the file type is supported. First-time indexing of large folders can take a while.
 </details>
 
-<!-- TODO: add real issues you hit while building (Tauri sidecar, DLL paths, ARM64 wheels) - these are the most valuable entries. -->
 
 ## ❓ FAQ
 
@@ -320,8 +319,6 @@ No. Goldfish falls back to CPU automatically. The NPU makes embedding faster and
 <details>
 <summary><b>Which file types are supported?</b></summary>
 
-_TODO: list them (for example PDF, DOCX, TXT, MD)._
-</details>
 
 ## 🏁 Competition alignment
 
